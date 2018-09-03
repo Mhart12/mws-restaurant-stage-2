@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <!-- Normalize.css for better cross-browser consistency -->
+  <link rel="stylesheet" src="//normalize-css.googlecode.com/svn/trunk/normalize.css" />
+  <!-- Main CSS file -->
+  <link rel="stylesheet" href="css/styles.css" type="text/css">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.1/dist/leaflet.css" integrity="sha512-Rksm5RenBEKSKFjgI3a41vrjkw4EVPlJ3+OiI65vTjIdo9brlAacEuKOiQ5OFh7cOI1bkDwLqdLw3Zg0cRJAAQ==" crossorigin=""/>
+  <!-- Startup configuration -->
+  <link rel="manifest" href="manifest.json">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#ffffff" />
+  <title>Restaurant Info</title>
+</head>
+
+<body class="inside">
+  <!-- Beginning header -->
+  <header>
+    <!-- Beginning nav -->
+    <nav>
+      <h1><a href="/" aria-label="Restaurants Reviews link">Restaurant Reviews</a></h1>
+    </nav>
+    <!-- Beginning breadcrumb -->
+    <ul id="breadcrumb" aria-label="Breadcrumb">
+      <li><a href="/" aria-label="Go to Home link">Home</a></li>
+    </ul>
+    <!-- End breadcrumb -->
+    <!-- End nav -->
+  </header>
+  <!-- End header -->
+
+  <!-- Beginning main -->
+  <main id="maincontent">
+    <!-- Beginning map -->
+    <section id="map-container" aria-label="Restaurant location map" role="application">
+      <div id="map"></div>
+    </section>
+    <!-- End map -->
+    <!-- Beginning restaurant -->
+    <section id="restaurant-container">
+      <h1 id="restaurant-name"></h1>
+      <p id="restaurant-favourite"></p>
+      <img id="restaurant-img">
+      <p id="restaurant-cuisine"></p>
+      <p id="restaurant-address"></p>
+      <table id="restaurant-hours"></table>
+    </section>
+    <!-- end restaurant -->
+    <!-- Beginning reviews -->
+    <section id="reviews-container">
+
+      <ul id="reviews-list"></ul>
+      <div id="add-review">
+        <form id="review-form">
+          <h2>Add your review</h2>
+          <label for="review-author-name"><h3>Name:</h3><input id="review-author-name" class="" type="text" aria-label="Review author" required/></label></br>
+          <label for="review-rating"><h3>Rating:</h3><select id="review-rating" class="" aria-label="Raview rate restaurant" required>
+            <option value="0">Rate restaurant</option>
+            <option value="1">1 point</option>
+            <option value="2">2 points</option>
+            <option value="3">3 points</option>
+            <option value="4">4 points</option>
+            <option value="5">5 points</option>
+          </select></label></br>
+
+
+          <label for="review-comments"><h3>Comments</h3>
+          <textarea id="review-comments" class="comment-box" cols="20" rows="5" aria-label="Review comment" required></textarea>
+		  </label></br>
+          <div id="reviews-form-error"></div>
+
+          <input type="button" id="submitButton" onclick="addReview();" value="Send your review" aria-pressed="false"  aria-label="Send review"/>
+        </form>
+
+      </div>
+    </section>
+    <!-- End reviews -->
+  </main>
+  <!-- End main -->
+<noscript>Your browser does not support JavaScript!</noscript>
+  <!-- Beginning footer -->
+  <footer id="footer">
+    Copyright (c) 2017 <a href="/" aria-label="Restaurants Reviews link"><strong>Restaurant Reviews</strong></a> All Rights Reserved.
+  </footer>
+  <!-- End footer -->
+<script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function() {
+    navigator.serviceWorker.register('sw.js', { scope: '.'}).then(function(registration) {
+      console.log('SW successfully registered');
+    })
+    .catch(function(error) {
+      console.log('registration failed', error);
+    });
+});
+
+}
+</script>
+  <!-- Beginning scripts -->
+  <script src="https://unpkg.com/leaflet@1.3.1/dist/leaflet.js" integrity="sha512-/Nsx9X4HebavoBvEBuyp3I7od5tA0UzAxs+j83KgC8PU0kgB4XiK4Lfe4y4cgBtaRJQEIFCW+oC506aPT2L1zw==" crossorigin=""></script>
+  <!-- Database helpers -->
+  <script type="application/javascript" src="js/idb.js"></script>
+  <script type="text/javascript" src="js/dbhelper.js"></script>
+  <!-- Main javascript file -->
+  <script type="text/javascript" src="js/restaurant_info.js"></script>
+  <!-- Google Maps -->
+  <!--<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAeYGklucZIufse0mnqyOBmZlycsMnlTUQ&libraries=places&callback=initMap"></script>-->
+  <!-- End scripts -->
+
+</body>
+
+</html>
